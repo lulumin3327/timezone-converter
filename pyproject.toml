@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oo2026-timezone-0811aiesha"
+version = "0.1.0"
+description = "A simple Python timezone conversion toolkit"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+
+authors = [
+    {name = "LiuAiesha"}
+]
+
+dependencies = [
+    "tzdata>=2024.1"
+]
+
+[tool.setuptools.packages.find]
+include = ["timezone_converter*"]
