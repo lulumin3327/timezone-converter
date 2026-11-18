@@ -1,9 +1,61 @@
+
 from datetime import datetime
 
 from timezone_converter import (
     convert_timezone,
+    get_timezone_info,
     TimezoneError
 )
+
+
+def show_timezone_info():
+    """查詢三個時區目前的資訊"""
+
+    timezones = [
+        "Asia/Taipei",
+        "Europe/Berlin",
+        "America/New_York"
+    ]
+
+    for timezone_name in timezones:
+        try:
+            info = get_timezone_info(timezone_name)
+        except TimezoneError as e:
+            print(f"查詢失敗：{e}")
+            continue
+
+        print("=" * 40)
+        print(f"時區：{info['timezone']}")
+        print(f"當地時間：{info['datetime']}")
+        print(f"UTC Offset：{info['utc_offset']}")
+        print(f"時區縮寫：{info['timezone_abbr']}")
+        print(f"是否使用夏令時間：{info['is_dst']}")
+
+
+def test_daylight_saving_time():
+    """測試德國不同季節的夏令時間"""
+
+    test_dates = [
+        datetime(2026, 1, 15, 12, 0),
+        datetime(2026, 7, 15, 12, 0),
+        datetime(2026, 11, 15, 12, 0)
+    ]
+
+    print("\n========== 夏令時間測試 ==========")
+
+    for date in test_dates:
+        try:
+            info = get_timezone_info("Europe/Berlin", date)
+        except TimezoneError as e:
+            print(f"測試失敗：{e}")
+            continue
+
+        print("=" * 40)
+        print(f"日期：{date}")
+        print(f"當地時間：{info['datetime']}")
+        print(f"UTC Offset：{info['utc_offset']}")
+        print(f"時區縮寫：{info['timezone_abbr']}")
+        print(f"是否使用夏令時間：{info['is_dst']}")
 
 
 def main():
