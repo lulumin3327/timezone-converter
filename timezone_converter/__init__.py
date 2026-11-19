@@ -1,16 +1,21 @@
-from .converter import convert_timezone
-from .timezone_info import get_timezone_info
+"""時區轉換工具。"""
 
-from .exceptions import (
-    TimezoneError,
-    InvalidTimezoneError,
-    InvalidDatetimeError
-)
+from .converter import compare_timezones, convert_timezone
+from .exceptions import InvalidDatetimeError, InvalidTimezoneError, TimezoneError
+from .timezone_info import get_timezone_info
+from .timezones import is_valid_timezone, list_timezones, resolve_timezone
+
+__version__ = "0.1.0"
 
 __all__ = [
+    "compare_timezones",
     "convert_timezone",
     "get_timezone_info",
+    "is_valid_timezone",
+    "list_timezones",
+    "resolve_timezone",
     "TimezoneError",
     "InvalidTimezoneError",
-    "InvalidDatetimeError"
+    "InvalidDatetimeError",
+    "__version__",
 ]
